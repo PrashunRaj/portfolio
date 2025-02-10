@@ -1,91 +1,127 @@
-import React from 'react';
-import { Particles } from 'react-tsparticles';
-import { loadSlim } from 'tsparticles-slim';
+import React, { useEffect, useState, useRef } from 'react';
 
-const ParticlesBackground = () => {
-  const particlesInit = async (engine) => {
-    // Correct method to load particles
-    await loadSlim(engine);
-  };
+const SVGNetworkBackground = () => {
+  const [points, setPoints] = useState([]);
+  const containerRef = useRef(null);
+  
+  useEffect(() => {
+    const createPoints = () => {
+      const numPoints = window.innerWidth > 768 ? 80 : 40;
+      const newPoints = [];
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      for (let i = 0; i < numPoints; i++) {
+        newPoints.push({
+          id: i,
+          x: Math.random() * width,
+          y: Math.random() * height,
+          dx: (Math.random() - 0.5) * 1.2,
+          dy: (Math.random() - 0.5) * 1.2
+        });
+      }
+      
+      setPoints(newPoints);
+    };
 
-  const particlesLoaded = (container) => {
-    console.log("Particles container loaded", container);
+    createPoints();
+
+    const handleResize = () => {
+      createPoints();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    let animationId;
+    
+    const animate = () => {
+      setPoints(currentPoints => {
+        return currentPoints.map(point => {
+          let { x, y, dx, dy } = point;
+          
+          x += dx;
+          y += dy;
+          
+          if (x < 0 || x > window.innerWidth) dx = -dx;
+          if (y < 0 || y > window.innerHeight) dy = -dy;
+          
+          x = Math.max(0, Math.min(window.innerWidth, x));
+          y = Math.max(0, Math.min(window.innerHeight, y));
+          
+          return { ...point, x, y, dx, dy };
+        });
+      });
+      
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animate();
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
+  const getConnections = () => {
+    const connections = [];
+    const connectionDistance = window.innerWidth > 768 ? 200 : 150;
+    
+    points.forEach((point1, i) => {
+      points.slice(i + 1).forEach(point2 => {
+        const dx = point2.x - point1.x;
+        const dy = point2.y - point1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < connectionDistance) {
+          const opacity = (1 - distance / connectionDistance) * 0.4;
+          connections.push({
+            id: `${point1.id}-${point2.id}`,
+            x1: point1.x,
+            y1: point1.y,
+            x2: point2.x,
+            y2: point2.y,
+            opacity
+          });
+        }
+      });
+    });
+    
+    return connections;
   };
 
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        background: {
-          color: "#0a192f", // Match your original background color
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#64ffda",
-          },
-          links: {
-            color: "#64ffda",
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: false,
-            speed: 2,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0.5,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 5 },
-          },
-        },
-        detectRetina: true,
-      }}
-    />
+    <div ref={containerRef} className="fixed inset-0 -z-10 bg-[#0a192f]">
+      <svg width="100%" height="100%" className="absolute inset-0">
+        {/* Connections */}
+        {getConnections().map(connection => (
+          <line
+            key={connection.id}
+            x1={connection.x1}
+            y1={connection.y1}
+            x2={connection.x2}
+            y2={connection.y2}
+            stroke="#64ffda" // Darker green color for lines
+            strokeWidth="1.2" // Thicker lines for better visibility
+            strokeOpacity={connection.opacity}
+          />
+        ))}
+        
+        {/* Points */}
+        {points.map(point => (
+          <circle
+            key={point.id}
+            cx={point.x}
+            cy={point.y}
+            r="1.5"
+            fill="#2dffc0"
+            fillOpacity="0.7"
+          />
+        ))}
+      </svg>
+    </div>
   );
 };
 
-export default ParticlesBackground;
+export default SVGNetworkBackground;
+
+

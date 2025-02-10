@@ -33,11 +33,12 @@ const About = () => {
           Outside of coding, I enjoy watching fictional movies, traveling to new places, exploring new hobbies, and staying updated with the latest tech trends. I’m always eager to connect with like-minded individuals and collaborate on exciting projects.
           </p>
           <a
-            href="#"
-            className="inline-block mt-4 text-[#64ffda] border border-[#64ffda] py-2 px-6 rounded-md hover:bg-[#64ffda] hover:text-[#0a192f] transition-colors duration-500"
-          >
-            Download Resume
-          </a>
+  href="/Pr_res.pdf" 
+  download="Prashun_Resume.pdf" 
+  className="inline-block mt-4 text-[#64ffda] border border-[#64ffda] py-2 px-6 rounded-md hover:bg-[#64ffda] hover:text-[#0a192f] transition-colors duration-500"
+>
+  Download Resume
+</a>
         </div>
       </div>
     </div>
