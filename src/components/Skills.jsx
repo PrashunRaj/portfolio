@@ -66,7 +66,10 @@ const SkillSection = () => {
   return (
     <div
       id="skills"
-      className="min-h-screen text-white flex flex-col items-center lg:items-start px-6 py-16 lg:pl-64"
+      className="min-h-screen w-full max-w-none text-white flex flex-col items-center 
+      lg:items-start px-6 py-16 md:pl-64 sm:pl-64 
+      p-4 sm:p-6 bg-transparent relative z-10"
+
     >
       {/* Main Content */}
       <div className="w-full">

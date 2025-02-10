@@ -9,7 +9,7 @@ const Portfolio = () => {
   return (
     <div
       id="portfolio"
-      className="p-5 md:p-10 md:ml-72 text-white"
+      className="sm:ml-64 p-4 sm:p-6 bg-transparent text-white relative z-10"
     >
       {/* Adjusted padding for mobile */}
       <div className="container">

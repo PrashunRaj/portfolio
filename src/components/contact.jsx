@@ -31,9 +31,11 @@ const Contact = () => {
     <div 
     id="contact" 
     className="px-12 flex min-h-screen bg-transparent 
-               items-center justify-center
-               max-md:flex-col max-md:px-4 
-               max-md:py-12 lg:pl-[300px]" // Adjusted for sidebar
+            items-center justify-center text-white 
+            max-md:flex-col max-md:px-4 max-md:py-12 
+            lg:pl-[300px] sm:ml-64 p-4 sm:p-6 
+            relative z-10"
+// Adjusted for sidebar
   >
     <div className="container mx-auto flex 
                     max-md:flex-col 
