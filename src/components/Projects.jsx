@@ -36,33 +36,38 @@ const Portfolio = () => {
                 href="#"
                 className="mt-4 text-[#0a192f] text-base md:text-lg bg-[#64ffda] w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full"
               >
-                <FontAwesomeIcon icon={faUpRightFromSquare} />
+                <FontAwesomeIcon icon={faUpRightFromSquare}/>
               </a>
             </div>
           </div>
 
-          {/* Work 2*/}
-          <div className="relative overflow-hidden rounded-lg group">
-            <img
-              src={EarthWise}
-              alt="Sustainability Platform"
-              className="w-full rounded-lg transform transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center items-center bg-gradient-to-b from-[#0a192f]/60 to-[#64ffda] text-white text-center p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-              <h3 className="text-lg md:text-xl font-medium mb-4">
-                EcoConnect Platform
-              </h3>
-              <p className="text-sm md:text-base">
-                A platform that connects individuals with eco-friendly service providers and promotes sustainable living.
-              </p>
-              <a
-                href="https://sustainable-frontend.onrender.com/"
-                className="mt-4 text-[#0a192f] text-base md:text-lg bg-[#64ffda] w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full"
-              >
-                <FontAwesomeIcon icon={faUpRightFromSquare} />
-              </a>
-            </div>
-          </div>
+         {/* Work 2*/}
+<div className="relative overflow-hidden rounded-lg group">
+  <a href="https://sustainable-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">
+    <img
+      src={EarthWise}
+      alt="Sustainability Platform"
+      className="w-full rounded-lg transform transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+    />
+  </a>
+  <div className="absolute inset-0 flex flex-col justify-center items-center bg-gradient-to-b from-[#0a192f]/60 to-[#64ffda] text-white text-center p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+    <h3 className="text-lg md:text-xl font-medium mb-4">
+      EcoConnect Platform
+    </h3>
+    <p className="text-sm md:text-base">
+      A platform that connects individuals with eco-friendly service providers and promotes sustainable living.
+    </p>
+    <a
+      href="https://sustainable-frontend.onrender.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-4 text-[#0a192f] text-base md:text-lg bg-[#64ffda] w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full"
+    >
+      <FontAwesomeIcon icon={faUpRightFromSquare} />
+    </a>
+  </div>
+</div>
+
 
 
 
