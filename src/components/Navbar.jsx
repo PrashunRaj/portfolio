@@ -8,12 +8,16 @@ import {
   Trophy, 
   Briefcase, 
   Mail,
-  Briefcase as BriefcaseIcon
+  Briefcase as BriefcaseIcon,
+  ChevronLeft,
+  ChevronRight
+  
 } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const navItems = [
     { 
@@ -99,25 +103,47 @@ const Navbar = () => {
       )}
 
       {/* Desktop Sidebar */}
-      <nav className="hidden md:block fixed left-0 top-0 h-full w-64 bg-primary-bg/80 backdrop-blur-md z-50 p-6">
-        <div className="text-primary-accent font-bold text-2xl mb-10 text-center">
-         
-          <span  className=' block text-4xl font-bold text-[#64ffda]'> Portfolio</span>
+      <nav className={`hidden md:block fixed left-0 top-0 h-full ${
+        isSidebarCollapsed ? 'w-20' : 'w-64'
+      } bg-primary-bg/80 backdrop-blur-md z-50 p-6 transition-all duration-300 ease-in-out`}>
+        <div className={`text-primary-accent font-bold text-2xl mb-10 ${
+          isSidebarCollapsed ? 'text-center px-0' : 'text-center'
+        }`}>
+          {!isSidebarCollapsed && (
+            <span className='block text-4xl font-bold text-[#64ffda]'>Portfolio</span>
+          )}
         </div>
+
+        {/* Collapse Toggle Button */}
+        <button
+          onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          className="absolute -right-4 top-8 bg-[#64ffda] text-primary-bg p-1.5 rounded-full hover:bg-[#4ad3b3] transition-colors"
+        >
+          {isSidebarCollapsed ? 
+            <ChevronRight size={16} /> : 
+            <ChevronLeft size={16} />
+          }
+        </button>
+
         <div className="space-y-4">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
               onClick={() => handleNavClick(item.section)}
-              className={`flex items-center space-x-4 text-white hover:text-primary-accent transition group relative py-2 px-3 rounded-md ${
+              className={`flex items-center ${
+                isSidebarCollapsed ? 'justify-center' : 'space-x-4'
+              } text-white hover:text-primary-accent transition group relative py-2 px-3 rounded-md ${
                 activeSection === item.section 
                   ? 'bg-primary-accent/10 text-primary-accent border border-primary-accent' 
                   : 'border border-transparent'
               }`}
+              title={isSidebarCollapsed ? item.name : ''}
             >
               {item.icon}
-              <span className="group-hover:translate-x-1 transition">{item.name}</span>
+              {!isSidebarCollapsed && (
+                <span className="group-hover:translate-x-1 transition">{item.name}</span>
+              )}
               {activeSection === item.section && (
                 <span className="absolute left-0 bottom-0 w-1 h-full bg-primary-accent rounded-l-md" />
               )}
@@ -127,7 +153,7 @@ const Navbar = () => {
       </nav>
 
       {/* Sidebar/Top Navbar Spacer */}
-      <div className="md:pl-64 pt-16 md:pt-0"></div>
+      <div className={`md:pl-${isSidebarCollapsed ? '20' : '64'} pt-16 md:pt-0 transition-all duration-300`}></div>
     </>
   );
 };

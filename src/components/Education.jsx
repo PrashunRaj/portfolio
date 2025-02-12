@@ -45,7 +45,7 @@ const Education = () => {
           Education Highlights
         </h2>
         <p className="text-[#8892b0] leading-relaxed">
-          I am currently pursuing my Bachelor of Technology in Computer Science and Engineering at 
+          I am currently pursuing a Bachelor of Technology in Computer Science and Engineering at 
           Birla Institute of Technology, Mesra. My academic journey has been a continuous process of 
           learning, exploring, and gaining expertise in various aspects of technology and problem-solving.
           I completed my schooling at DAV Co-Op Sr. Sec. School, Khalari, where I built a strong foundation 

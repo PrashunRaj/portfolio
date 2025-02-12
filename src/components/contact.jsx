@@ -31,10 +31,10 @@ const Contact = () => {
     <div 
     id="contact" 
     className="px-12 flex min-h-screen bg-transparent 
-            items-center justify-center text-white 
-            max-md:flex-col max-md:px-4 max-md:py-12 
-            lg:pl-[300px] sm:ml-64 p-4 sm:p-6 
-            relative z-10"
+          items-center justify-center text-white 
+          max-md:flex-col max-md:px-4 max-md:py-12 
+          lg:pl-[300px] sm:ml-64 p-4 sm:p-6 
+          relative z-0" 
 // Adjusted for sidebar
   >
     <div className="container mx-auto flex 
@@ -61,14 +61,14 @@ const Contact = () => {
               />
               <span className="text-[#ccd6f6]">rajprashun64@gmail.com</span>
             </p>
-            <p className="flex items-center text-[#64ffda] text-base group">
+            {/* <p className="flex items-center text-[#64ffda] text-base group">
               <Phone 
                 className="mr-3 text-[#64ffda] group-hover:scale-110 
                            transition-transform duration-300"
                 size={22} 
               />
-              <span className="text-[#ccd6f6]">8434013295</span>
-            </p>
+              <span className="text-[#ccd6f6]"></span>
+            </p> */}
           </div>
         </div>
       </div>

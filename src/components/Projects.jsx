@@ -40,7 +40,6 @@ const Portfolio = () => {
               </a>
             </div>
           </div>
-
          {/* Work 2*/}
 <div className="relative overflow-hidden rounded-lg group">
   <a href="https://sustainable-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">
