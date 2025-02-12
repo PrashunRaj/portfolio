@@ -29,7 +29,6 @@ import jan_vid from '../assets/jan_vid.gif';
 const AchievementSection = () => {
   const [showBadges, setShowBadges] = useState(false);
   const [selectedBadge, setSelectedBadge] = useState(null);
-
   const leetcodeBadges = [
     {
       name: "Fifty Days Badge",
@@ -110,6 +109,24 @@ const AchievementSection = () => {
       description: "Maintained a 164-day ongoing streak on LeetCode, consistently solving daily challenges.",
       date: "Current",
       onClick: () => setShowBadges(true)
+    } ,{
+      icon: <Code className="text-teal-400" />,
+      title: "LeetCode Streak Master",
+      description: "Maintained a 164-day ongoing streak on LeetCode, consistently solving daily challenges.",
+      date: "Current",
+      action: (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowBadges(true);
+          }}
+          className="mt-2 px-4 py-1.5 text-sm bg-transparent border border-teal-400 
+                     text-teal-400 rounded-md hover:bg-teal-400/10 
+                     transition-all duration-300"
+        >
+          See Badges
+        </button>
+      )
     }
   ];
 
@@ -160,22 +177,37 @@ const AchievementSection = () => {
       </div>
       <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-4 sm:pb-6 scrollbar-thin scrollbar-thumb-teal-400 scrollbar-track-transparent">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {achievements.map((achievement, index) => (
-            <div
-              key={index}
-              className="bg-[#112240]/80 backdrop-blur-sm border border-teal-400/20 rounded-lg p-4 sm:p-6 flex items-center space-x-3 sm:space-x-4 hover:bg-[#112240]/70 transition-all duration-300 ease-in-out cursor-pointer"
-              onClick={achievement.onClick}
-            >
-              <div className="text-2xl sm:text-4xl">
-                {achievement.icon}
-              </div>
-              <div>
-                <h3 className="font-semibold text-base sm:text-lg text-teal-400">{achievement.title}</h3>
-                <p className="text-xs sm:text-sm text-gray-300">{achievement.description}</p>
-                <span className="text-xs text-gray-500">{achievement.date}</span>
-              </div>
-            </div>
-          ))}
+      
+{achievements.map((achievement, index) => (
+  <div
+    key={index}
+    className="bg-[#112240]/80 backdrop-blur-sm border border-teal-400/20 
+               rounded-lg p-4 sm:p-6 flex flex-col space-y-3 
+               hover:bg-[#112240]/70 transition-all duration-300 ease-in-out"
+  >
+    <div className="flex items-center space-x-3 sm:space-x-4">
+      <div className="text-2xl sm:text-4xl">
+        {achievement.icon}
+      </div>
+      <div>
+        <h3 className="font-semibold text-base sm:text-lg text-teal-400">
+          {achievement.title}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-300">
+          {achievement.description}
+        </p>
+        <span className="text-xs text-gray-500">
+          {achievement.date}
+        </span>
+      </div>
+    </div>
+    {achievement.action && (
+      <div className="flex justify-end">
+        {achievement.action}
+      </div>
+    )}
+  </div>
+))}
         </div>
       </div>
 
