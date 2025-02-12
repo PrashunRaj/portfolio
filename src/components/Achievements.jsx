@@ -8,7 +8,7 @@ import  hundred from '../assets/100days_img.png';
 import hundred_vid from '../assets/100days_vid.gif';
 
 import two_hundred from '../assets/200days_img.png';
-import two_hundred_vid from '../assets/200days.gif';
+import two_hundred_vid from '../assets/200Days.gif';
 
 import sept from '../assets/sep_img.png';
 import sept_vid from '../assets/sep_vid.gif';
