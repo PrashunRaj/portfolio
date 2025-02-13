@@ -103,13 +103,7 @@ const AchievementSection = () => {
       description: "Served as the Head Boy, developing strong leadership and organizational skills.",
       date: "2023"
     },
-    {
-      icon: <Code className="text-teal-400" />,
-      title: "LeetCode Streak Master",
-      description: "Maintained a 164-day ongoing streak on LeetCode, consistently solving daily challenges.",
-      date: "Current",
-      onClick: () => setShowBadges(true)
-    } ,{
+  {
       icon: <Code className="text-teal-400" />,
       title: "LeetCode Streak Master",
       description: "Maintained a 164-day ongoing streak on LeetCode, consistently solving daily challenges.",
